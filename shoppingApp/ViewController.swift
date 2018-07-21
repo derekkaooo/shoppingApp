@@ -8,8 +8,27 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, myTableViewControllerDelegate {
 
+    @IBOutlet weak var myTotal: UILabel!
+  
+    
+    func amount(all:String){
+         myTotal.text = all.description
+    }
+   
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gotoview"{
+          if let myTable = segue.destination as? myTableViewController{
+           myTable.infoFromviewOne = myTotal.text
+            myTable.delegate = self
+            }
+        }
+    }
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
